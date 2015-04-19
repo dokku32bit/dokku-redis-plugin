@@ -6,4 +6,4 @@ set +exo pipefail
 set -e
 
 # Build redis-server docker image
-docker pull redis:latest
+docker pull dokku32bit/redis:latest
