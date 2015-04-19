@@ -5,6 +5,8 @@ set +exo pipefail
 # Fail on equation failure
 set -e
 
+REDISIMAGE=$(cat redisimage)
+
 # Check if name is specified
 if [[ $1 == redis:* ]]; then
     if [[ -z $2 ]]; then
@@ -71,7 +73,7 @@ case "$1" in
 
     # Remove docker link
     if [[ -f $REDIS_FLAG_LINK_FILE ]]; then
-        dokku link:delete $APP $REDIS_CONTAINER_NAME redis
+        dokku link:delete $APP $REDIS_CONTAINER_NAME $REDISIMAGE
     fi
 
     # Remove the container

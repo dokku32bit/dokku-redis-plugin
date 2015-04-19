@@ -5,5 +5,9 @@ set +exo pipefail
 # Fail on equation failure
 set -e
 
+REDISIMAGE=$(cat redisimage)
+
 # Build redis-server docker image
-docker pull dokku32bit/redis:latest
+if docker inspect "$REDISIMAGE" >/dev/null 2>/dev/null; then
+	docker pull "$REDISIMAGE"
+fi
